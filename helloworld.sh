@@ -7,7 +7,9 @@
 
 # Declaration of variables
 myvariable='i am working perfectly'
+
 # Declaration of functions
+echo 'helloworld'
 echo $myvariable
 
 # Main
