@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Script Name :                 Functions
+# Author:                       Benjamin Chang
+# date of latest revision:      11/29/2023
+# Purpose:                      Create a script that prints a string to the console
+
+# Declaration of variables
+
+# Declaration of functions
+print_function() {
+    echo `last`
+    echo "This is the login history"
+
+}
+
+# Main
+
+
+print_function
+print_function
+print_function
+
+# End
