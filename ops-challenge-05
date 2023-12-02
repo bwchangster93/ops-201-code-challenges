@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# Script Name :                     Loops
+
+# Author:                           Benjamin Chang
+
+# date of latest revision:          12/01/2023
+
+# Purpose:                          Write a script that: 
+#                                   displays running processes, 
+#                                   asks the user for a PID, 
+#                                   then kills the process with that PID.
+
+#                                   Use a loop in your script.
+
+# Listing current processes
+echo "Current processes"
+ps aux
+
+# Asking for PID of process in which to kill
+echo -n "Enter PID of process which you would like to terminate"
+read PID
+
+
+# Checking PID exists
+if ps -p $PID > /dev/null; then
+    # Terminating the process
+    kill $PID
+    echo "Process has been terminated"
+else
+    echo "PID Invalid"
+fi
+
+
+
+
+# echo -n "Enter PID for process which you would like to terminate"
+
+# if 
