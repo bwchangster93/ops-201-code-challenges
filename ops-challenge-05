@@ -18,15 +18,21 @@ echo "Current processes"
 ps aux
 
 # Asking for PID of process in which to kill
-echo -n "Enter PID of process which you would like to terminate"
-read PID
+read -p "Enter PID of process which you would like to terminate" PID
 
 
 # Checking PID exists
 if ps -p $PID > /dev/null; then
-    # Terminating the process
-    kill $PID
-    echo "Process has been terminated"
+    # Confirm with user that they want to terminate
+
+    read -p "Terminate process with the PID $PID? (y/n)" confirmation
+    if [ "$confirmation" == "y" ]; then
+        kill $PID
+        echo "Process has been terminated"
+    else
+        echo "Termination of the process with PID: "$PID" has been aborted"
+    fi
+
 else
     echo "PID Invalid"
 fi

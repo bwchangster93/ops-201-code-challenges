@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Display a list of running processes
+echo "List of running processes:"
+ps aux
+
+# Prompt the user for a PID
+read -p "Enter the PID of the process to terminate: " pid
+
+# Check if the provided input is a valid number
+if [[ ! $pid =~ ^[0-9]+$ ]]; then
+  echo "Invalid input. Please enter a valid PID (numeric value)."
+  exit 1
+fi
+
+# Check if the process with the given PID exists
+if ps -p $pid > /dev/null; then
+  # Terminate the process
+  kill $pid
+  echo "Process with PID $pid terminated successfully."
+else
+  echo "No process found with PID $pid."
+fi
