@@ -1,0 +1,68 @@
+#!/bin/bash
+
+#Script Name:                    Bash conditionals
+#Author:                         Benjamin Chang
+#Date of latest revision:        12/05/2023
+#Purpose:                        Create a script that detects if a file or directory exists, 
+#                                then creates it if it does not exist.
+
+#                                Must use at least one arrow, one loop, and one conditional.
+
+#array to store the list
+grocery_list=(apples milk bread monster)
+
+#function to check if item exists
+glist_check() {
+    #item i am looking for
+    search_item="$1"
+
+    #for loop
+    for item in "${grocery_list[@]}"; do
+        #check if exists
+        if [ "$item" == "$search_item" ]; then
+            return 0
+            echo "The item is in your grocery list!"
+        fi
+    done
+    return 1 #false
+}
+
+#main
+
+#while loop
+#this while loop is going to continually ask the user for items to check
+while true; 
+do
+    #ask user for item to check list for
+    read -p "Enter an item to check if it's on your grocery list: (Type done to exit.)" item_to_check
+
+    #check if user is done
+    if [ "$item_to_check" == "done" ]; then
+        break #exit loop
+    fi
+
+    #check if item is on list
+    if glist_check "$item_to_check"; then
+        echo "Item '$item_to_check' is already on your grocery list"
+    else
+        # if item isn't on list, ask to add or not
+        read -p "'$item_to_check' is not on your list, do you want to add it?" add_to_list
+        if [ "$add_to_list" == "yes" ]; then
+            grocery_list+=("$item_to_check")
+            echo "'$item_to_check' was added to the list"
+        else 
+            echo "'$item_to_check' was not added to the list"
+        fi
+    fi 
+done
+
+#ask the user if they want to see the list
+read -p "are you ready to see your completed grocery list? (yes/no)" show_list
+if [ "$show_list" == "yes" ]; then
+    echo "Complete grocery list:"
+    echo ${grocery_list[@]}
+else
+    echo "Ok, you can check your list later."
+fi
+
+#end
