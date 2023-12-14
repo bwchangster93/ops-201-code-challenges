@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Script Name :                 System information
+# Author:                       Benjamin Chang
+# date of latest revision:      12/13/2023
+# Purpose:                      Uses lshw to display system information to the screen about the following components:
+#                               Uses grep to remove irrelevant information from the lshw output
+#                               Add text to the output clearly indicating which component (such as CPU, RAM, etc.) the script is returning information about
+#                               Runs as Root; you may execute the shell script with sudo or as Root
+
+
+#outputs the name of computer
+lshw | grep "ben-optiplex-990"
+
+#outputs the *-cpu and the following 4 lines
+lshw | grep -A 4 "*-cpu"
+
+#finds first 2 searches then removes the first one.
+lshw | grep -m 2 "width: 64 bits" | tail -n 1
+
+#this removes the specific lines that are unwanted
+lshw | grep -A 4 "*-memory" | grep -v "slot"
+lshw | grep -A 12 "*-display" | grep -v "logical name" | grep -v "version"
+lshw | grep -A 15 "*-network"
+
