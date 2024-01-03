@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# Script Name :                 whois script challenge 13
+# Author:                       Benjamin Chang
+# date of latest revision:      1/2/2023
+# Purpose:                      Take a user input string. Presumably the string is a domain name such as Google.com.
+#                               Run whois against a user input string.
+#                               Run dig against the user input string.
+#                               Run host against the user input string.
+#                               Run nslookup against the user input string.
+#                               Output the results to a single .txt file and open it with your favorite text editor.
+
+domain_function() {
+    read -p "What domain would you like to check?: " domain
+    read -p "Type 1 for whois, 2 for dig, 3 for host, 4 for nslookup: " choice
+    
+    case $choice in
+        1)
+            whois "$domain"
+            ;;
+        2)
+            dig "$domain"
+            ;;
+        3)
+            host "$domain"
+            ;;
+        4)
+            nsloopup "$domain"
+            ;;
+        *)
+            echo "$choice is not a valid option"
+            ;;
+    esac
+}
+
+domain_function
